@@ -29,7 +29,7 @@ const reducer = (state: StateType = { todos: [] }, action: Actions) => {
       };
 
     case "remove":
-      return { todos: state.todos.filter((_, i) => action.idx != i) };
+      return { todos: state.todos.filter((_, i) => action.idx !== i) };
 
     default:
       return state;
@@ -45,7 +45,7 @@ export const Todos: React.FC<Props> = ({ initialTodos = [] }) => {
   return (
     <div>
       {state.todos.map(todo => (
-        <div>{todo.text}</div>
+        <div key={todo.text}>{todo.text}</div>
       ))}
 
       <button
