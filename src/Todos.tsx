@@ -17,7 +17,7 @@ interface StateType {
   todos: Todo[];
 }
 
-const reducer = (state: StateType = { todos: [] }, action: Actions) => {
+const reducer = (state: StateType, action: Actions) => {
   switch (action.type) {
     case "reset":
       return initialState;
