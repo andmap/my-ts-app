@@ -1,6 +1,6 @@
 # algorithm, react features
 
-![- plaid app](https://github.com/andmap/plaid.qb.reconcile/blob/master/images/plaid.png?raw=true)
+![- my app](https://github.com/andmap/my-ts-app/blob/master/src/images/algorithm.png?raw=true)
 
 ## Table of contents
 
