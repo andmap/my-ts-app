@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useMemo, useRef } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 // import TextInput from "./TextInput";
@@ -6,12 +6,29 @@ import { Todos } from "./Todos";
 import { Counter } from "./Counter";
 import { Chats } from "./Chats";
 import { Hello } from "./Hello";
+import { Forms } from "./Forms";
+import { hasPairWithSum } from "./utils/helpers";
+import Memo from "./Memo";
 const App = () => {
+  const array = useMemo(() => {
+    return ["one", "2"];
+  }, []);
+  const [count, setCount] = useState(0);
   return (
     <div className="App">
+      <button onClick={(e) => setCount(count + 1)}></button>
+
+      <h1>{count}</h1>
+      <h1>
+        sum: {hasPairWithSum([1, 2, 4, 4], 8) === true ? "true" : "false"}
+      </h1>
+      <h1>
+        sum: {hasPairWithSum([1, 2, 3, 9], 8) === true ? "true" : "false"}
+      </h1>
+      <Forms />
       <Hello />
       <Counter initialCount={0} />
-      <Todos initialTodos={[{ text: "first", completed: false }]} />
+      <Todos initialTodos={[{ text: "first - 001", completed: false }]} />
       <Chats>
         {({ count, setCount }) => (
           <div>
