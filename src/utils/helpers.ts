@@ -79,3 +79,55 @@ export const reconciliation = (data1: number[], data2: number[]) => {
   }
   return result;
 };
+
+function manipulatePropertiesOfObject(
+  obj: any,
+  operation: string,
+  prop: string,
+  newValue: number | null
+) {
+  switch (operation) {
+    case "delete":
+      const deleted = { ...obj };
+
+      for (const property in obj) {
+        if (property === prop) delete deleted[property];
+      }
+
+      return deleted;
+      break;
+    case "edit":
+      const edited = { ...obj };
+
+      for (const property in obj) {
+        if (property === prop) edited[property] = newValue;
+      }
+
+      return edited;
+      break;
+    default:
+      break;
+  }
+}
+
+interface InventoryList {
+  getList: () => string[];
+  remove: (name: any) => void;
+  add: (name: any) => number;
+  list: string[];
+}
+function inventoryList() {
+  let object = new Object() as InventoryList;
+  object.list = [];
+  object.add = (name: string) => object.list.push(name);
+  object.remove = (name: string) => {
+    const copy = object.list.filter((item) => item !== name);
+    object.list = copy;
+  };
+  object.getList = () => object.list;
+
+  return object;
+}
+
+const obj = inventoryList();
+console.log(obj.add("Testing"));
