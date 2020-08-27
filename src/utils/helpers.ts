@@ -143,7 +143,7 @@ const mergeSort = (unsortedArray: number[]) => {
   return result;
 };
 
-const merge = (left: number[], right: number[]) => {
+const merge = (left: number[], right: number[]): number[] => {
   let resultArray: number[] = [],
     leftIndex = 0,
     rightIndex = 0;
@@ -163,5 +163,25 @@ const merge = (left: number[], right: number[]) => {
   // from either left OR the right
   return resultArray
     .concat(left.slice(leftIndex))
-    .concat(right.slice(rightIndex)) as number[];
+    .concat(right.slice(rightIndex));
+};
+
+const quickSort = (arr: number[]): number[] => {
+  /*
+  devided in 2 groups by pivot: < and >=
+  */
+  if (arr.length <= 1) {
+    return arr;
+  }
+  // use value of last item of arr as pivot
+  const idxOfPivot = arr.length - 1;
+  const pivot = arr[idxOfPivot];
+  const leftArr = [];
+  const rightArr = [];
+
+  for (const el of arr.slice(0, idxOfPivot)) {
+    el < pivot ? leftArr.push(el) : rightArr.push(el);
+  }
+
+  return [...quickSort(leftArr), pivot, ...quickSort(rightArr)];
 };
